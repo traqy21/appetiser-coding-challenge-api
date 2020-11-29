@@ -1,6 +1,6 @@
-# Appetiser coding challenge
+# Appetiser coding challenge - BACKEND
 
-This is the Appetiser coding challeng api project used in the challenge.
+This is the Appetiser coding challenge api project used in the challenge.
 
 
 ## How to start the application
