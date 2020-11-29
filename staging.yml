@@ -1,0 +1,47 @@
+version: '3'
+services:
+    app:
+        build:
+            context: .
+            dockerfile: .docker/php/Dockerfile
+        image: generic-pos-staging:latest
+        container_name:  generic-pos-staging-app
+        environment:
+            CONTAINER_ROLE: app
+            DB_CONNECTION: mysql
+            DB_HOST: gatewaydatabaseinstance.c2ggo4iv5yme.ap-southeast-2.rds.amazonaws.com
+            DB_USERNAME: admin
+            DB_PASSWORD: qwerty4321
+            DB_DATABASE: test1_db
+            DB_PORT: 3306
+            APP_URL: http://ec2-54-79-29-179.ap-southeast-2.compute.amazonaws.com:8002
+            CMS_URL: http://ec2-54-79-29-179.ap-southeast-2.compute.amazonaws.com:8003/login
+            APP_ENV: development
+            APP_KEY: base64:VYN9hWQjjg8x4dRIQ3HWO7/JsfakMlwjEbgldSqa3+U=
+            APP_DEBUG: 1
+            APP_TIMEZONE: Asia/Manila
+            LOG_CHANNEL: single
+            CACHE_DRIVER: file
+            QUEUE_DRIVER: sync
+            BROADCAST_DRIVER: log
+            SESSION_DRIVER: file
+            SESSION_LIFETIME: 120
+            S3_KEY: AKIAJRVT3PKQAESEFZCA
+            S3_SECRET: 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
+            S3_REGION: ap-southeast-2
+            S3_BUCKET: offshore-gateway-uploads
+            PAYPAL_SERVICE_URL: https://api.sandbox.paypal.com/v1
+            MAIL_DRIVER: smtp
+            MAIL_HOST: smtp.gmail.com
+            MAIL_PORT: 587
+            MAIL_USERNAME: atraquena@yondu.com
+            MAIL_PASSWORD: atcxfpuwzqjzqhuz
+            MAIL_ENCRYPTION: tls
+            EMAIL_FROM_EMAIL: atraquena@gmail.com
+            MAIL_FROM_NAME: aries
+        volumes:
+            - ./:/var/www/html
+        #            - "/etc/timezone:/etc/timezone:ro"
+        #            - "/etc/localtime:/etc/localtime:ro"
+        ports:
+            - 8002:80

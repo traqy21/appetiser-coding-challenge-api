@@ -1,0 +1,46 @@
+version: '3'
+services:
+    app:
+        build:
+            context: .
+            dockerfile: .docker/php/Dockerfile
+        image: appetiser_coding_challenge_api:latest
+        container_name:  appetiser_coding_challenge_api-app
+        environment:
+            CONTAINER_ROLE: app  
+            APP_ENV: local
+            APP_KEY: base64:VYN9hWQjjg8x4dRIQ3HWO7/JsfakMlwjEbgldSqa3+U=
+            APP_DEBUG: 1
+            APP_TIMEZONE: Asia/Manila
+            APP_URL: http://localhost:8887
+            CMS_URL: http://localhost:8080 
+            EMAIL_FROM_EMAIL: atraquena@gmail.com
+            MAIL_FROM_NAME: aries
+            LOG_CHANNEL: single
+            CACHE_DRIVER: file
+            QUEUE_DRIVER: sync
+            BROADCAST_DRIVER: log
+            SESSION_DRIVER: file
+            SESSION_LIFETIME: 120
+        volumes:
+            - ./:/var/www/html
+            - "/etc/timezone:/etc/timezone:ro"
+            - "/etc/localtime:/etc/localtime:ro"
+        ports:
+            - 8887:80
+        depends_on:
+            - database
+
+    database:
+        container_name: appetiser_coding_challenge_db
+        image: mysql:5.7.19
+        restart: always
+        environment:
+            - MYSQL_DATABASE=appetiser
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=root
+            - MYSQL_ROOT_PASSWORD=root
+        ports:
+            - '3306'
+        expose:
+            - '3306'

@@ -1,0 +1,12 @@
+/vendor
+/.idea
+Homestead.json
+Homestead.yaml
+.env
+
+/docs/html
+/docs/phpdoc-*
+/phpunit.html
+/nbproject/private/
+test.html
+/storage/uploaded/pricelist/.gitkeep
